@@ -2,21 +2,54 @@ import pandas as pd
 
 def get_codeup_data():
     """
-    No argument(s) needed. Acquires codeup curriculum visitor data and returns as DF with datetime column set as index.
+    No argument(s) needed. Acquires and returns codeup curriculum page logs and cohort data.
     """
-    # read data from local csv file
-    data = pd.read_csv('anonymized-curriculum-access.txt', sep=" ", header=None, na_values='"-"')
+    # reading in log data from local csv file and converting to DF
+    logs = pd.read_csv('anonymized-curriculum-access.txt', sep=" ", header=None, na_values='"-"')
 
-    # set column names for DF
-    data.columns=['date', 'time', 'page_viewed','user_id','cohort_id','ip']
+    # set column names for logs DF
+    logs.columns=['date', 'time', 'page_viewed','user_id','cohort_id','ip']
 
+    # reading in cohort data from local csv file and converting to DF
+    cohorts = pd.read_csv('cohorts.csv')
+
+    return logs, cohorts
+
+def combine_codeup_data(logs, cohorts):
+    """
+    Accepts logs and cohorts data frames. Merges DFs on cohort ID while preserving all log rows. Adds datetime index. 
+    Returns updated DF.
+    """
     # concat date and time columns to create datetime column
-    data['datetime'] = data['date'] + ' ' + data['time']
+    logs['datetime'] = logs['date'] + ' ' + logs['time']
 
     # convert datetime column type to datetime data type
-    data['datetime'] = pd.to_datetime(data.datetime)
+    logs['datetime'] = pd.to_datetime(logs.datetime)
+
+    # dropping date and time columns since we combined them for index
+    logs.drop(columns = ['date', 'time'], inplace=True)
+
+    # performing left join to combine DFs while preserving all log data rows 
+    # since some rows don't have a cohort id to join on
+    combo = pd.merge(left = logs, right = cohorts, how = 'left', left_on = 'cohort_id', right_on = 'cohort_id')
 
     # set index to datetime column
-    data = data.set_index('datetime')
+    combo = combo.set_index('datetime')
 
-    return data
+    # returning DF
+    return combo
+
+def null_filler(df):
+    """
+    Accepts DF. Fills null values with values specified in notebook. Returns DF.
+    """
+    # using fillna to fill null values with specified values
+    df['page_viewed'] = df['page_viewed'].fillna('PageUnknown')
+    df['cohort_id'] = df['cohort_id'].fillna('0')
+    df['name'] = df['name'].fillna('unknown')
+    df['start_date'] = df['start_date'].fillna('99-99-9999')
+    df['end_date'] = df['end_date'].fillna('99-99-9999')
+    df['program_id'] = df['program_id'].fillna(0)
+
+    # returning df
+    return 
