@@ -45,10 +45,10 @@ def null_filler(df):
     """
     # using fillna to fill null values with specified values
     df['page_viewed'] = df['page_viewed'].fillna('PageUnknown')
-    df['cohort_id'] = df['cohort_id'].fillna('0')
+    df['cohort_id'] = df['cohort_id'].fillna(0)
     df['name'] = df['name'].fillna('unknown')
-    df['start_date'] = df['start_date'].fillna('99-99-9999')
-    df['end_date'] = df['end_date'].fillna('99-99-9999')
+    df['start_date'] = df['start_date'].fillna('01-01-1900')
+    df['end_date'] = df['end_date'].fillna('01-01-1900')
     df['program_id'] = df['program_id'].fillna(0)
 
     # returning df
