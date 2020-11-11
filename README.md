@@ -55,35 +55,37 @@ I can use the alumni page to help gather information about cohorts
         - Any other changes as needed
 
 3. Exploration
-- Which lesson appears to attract the most traffic consistently across cohorts (per program)?
+- Q1. Which lesson appears to attract the most traffic consistently across cohorts (per program)?
     - Find average views of each lesson per cohort
     - Identify lesson with highest amount of average views per cohort
 
-- Is there a cohort that referred to a lesson significantly more that other cohorts seemed to gloss over?
+- Q2. Is there a cohort that referred to a lesson significantly more that other cohorts seemed to gloss over?
     - Plot each lessons page views per cohort and look for a lesson that one cohort viewed significantly more than the other cohorts
 
-- Are there students who, when active, hardly access the curriculum? If so, what information do you have about these students? 
+- Q3. Are there students who, when active, hardly access the curriculum? If so, what information do you have about these students? 
     - Filter data to only display log entries that were created by a user while their cohort was active
     - Sum the amount of total page views and identify users with the lowest counts
 
-- Is there any suspicious activity, such as users/machines/etc accessing the curriculum who shouldn’t be? Does it appear that any web-scraping is happening? Are there any suspicious IP addresses? Any odd user-agents? 
+- Q4. Is there any suspicious activity, such as users/machines/etc accessing the curriculum who shouldn’t be? Does it appear that any web-scraping is happening? Are there any suspicious IP addresses? Any odd user-agents? 
     - 
 
-- At some point in the last year, ability for students and alumni to cross-access curriculum (web dev to ds, ds to web dev) should have been shut off. Do you see any evidence of that happening? Did it happen before? 
-    - 
+- Q5. At some point in the last year, ability for students and alumni to cross-access curriculum (web dev to ds, ds to web dev) should have been shut off. Do you see any evidence of that happening? Did it happen before? 
+    - Filter the separate program data frames for rows where the page_viewed value includes a lesson key word from the other program
+        - Example: Filter the data science dataframe for page_viewed values containing "java"
+    - Find the earliest and latest dates of these instances in each data frame to determing if they occured within the last year or prior
 
-- What topics are grads continuing to reference after graduation and into their jobs (for each program)? 
+- Q6. What topics are grads continuing to reference after graduation and into their jobs (for each program)? 
     - Filter data to only show log entries that were created by users on dates past their cohort end date
     - Sum the amount of views that these pages received 
     - Identify pages with highest amount of view post-graduation
 
-- Which lessons are least accessed? 
+- Q7. Which lessons are least accessed? 
     - Sum the amount of views that each major lesson has received
     - Identify the lessons with the lowest counts
         - I have to approach this differently than looking for lessons with the highest amount of views since there will be probably
         be a lot more pages that have minimal view counts than those that are near the most view counts
 
-- Anything else I should be aware of? 
+- Q8. Anything else I should be aware of? 
     - While answering the other question, keep note of any peculiar or interesting findings so that I can present them for this question
 
 4. Conclusion
