@@ -4,7 +4,7 @@ Anomaly Detection Project
 
 # Goals
 
-1) Explore the curriculum access data to answer various questions
+Explore the curriculum access data to answer various questions
 
 I will also deliver the following:
 - An email that answers each question
@@ -67,6 +67,10 @@ I can use the alumni page to help gather information about cohorts
     - Sum the amount of total page views and identify users with the lowest counts
 
 - Q4. Is there any suspicious activity, such as users/machines/etc accessing the curriculum who shouldn’t be? Does it appear that any web-scraping is happening? Are there any suspicious IP addresses? Any odd user-agents? 
+    - Identify users who have used a large amount of different IP addresses and have never had a program id assigned to them
+    - Research those users in-depth to see if more suspicious activity is present
+    - Use anomaly detection to find cases where a high amount of hourly web page hits were generated
+    - Research the users who generated the high amount of page hits to see if more suspicious activity exists
 
 - Q5. At some point in the last year, ability for students and alumni to cross-access curriculum (web dev to ds, ds to web dev) should have been shut off. Do you see any evidence of that happening? Did it happen before? 
     - Filter the separate program data frames for rows where the page_viewed value includes a lesson key word from the other program
