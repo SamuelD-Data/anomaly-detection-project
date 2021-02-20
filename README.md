@@ -99,6 +99,7 @@ I can use the alumni page to help gather information about cohorts
 # How to Reproduce
 
 - Download the source files to your local directory 
+    - You'll need to be a Codeup student to acquire the source file
 - Install acquire.py and prepare.py into your working directory
 - Run the jupyter notebook
 
